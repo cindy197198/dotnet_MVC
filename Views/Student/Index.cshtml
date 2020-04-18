@@ -1,16 +1,21 @@
-﻿@{
+﻿@model IEnumerable<MVC.Models.Student>
+@{
     ViewData["Title"] = "Student list";
-    var students = ViewBag.Students;
+    var studentsViewBag = ViewBag.Students;
+    var studentsViewData = (List<Student>) ViewData["Students"];
+    var studentModel = Model.ToList();
 }
 
 <div class="text-center">
     <h1 class="display-4">Student's list</h1>
-    <p>@students.Count</p>
+    <p>@studentsViewData.Count students by viewData/p>
+    <p>@studentModel.Count students by Model/p>
     <table>
-        @foreach (var student in students)
+        @foreach (var student in studentsViewBag)
         {
             <tr>
                 <td>@student.StudentId</td>
+                <td>@student.StudentName</td>
             </tr>
         }
     </table>
