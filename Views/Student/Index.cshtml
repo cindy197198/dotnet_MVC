@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Student list";
+    var students = ViewBag.Students;
+}
+
+<div class="text-center">
+    <h1 class="display-4">Student's list</h1>
+    <p>@students.Count</p>
+    <table>
+        @foreach (var student in students)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+            </tr>
+        }
+    </table>
+</div>
