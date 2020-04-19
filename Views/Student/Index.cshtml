@@ -1,22 +1,37 @@
-﻿@model IEnumerable<MVC.Models.Student>
+﻿@model List<MVC.Models.Student>
 @{
     ViewData["Title"] = "Student list";
-    var studentsViewBag = ViewBag.Students;
-    var studentsViewData = (List<Student>) ViewData["Students"];
-    var studentModel = Model.ToList();
+    var students = Model;
 }
 
 <div class="text-center">
     <h1 class="display-4">Student's list</h1>
-    <p>@studentsViewData.Count students by viewData/p>
-    <p>@studentModel.Count students by Model/p>
-    <table>
-        @foreach (var student in studentsViewBag)
-        {
+    <table class="table table-striped">
+        
             <tr>
-                <td>@student.StudentId</td>
-                <td>@student.StudentName</td>
+                <td>StudentId</td>
+                <td>StudentName</td>
+                <td>BirthDate</td>
+                <td>ClassId</td>
+                <td>Action</td>
             </tr>
-        }
+            @if (students != null){
+                @foreach (var student in students)
+                {
+                    <tr>
+                        <td>@student.StudentId</td>
+                        <td>
+                            <a href="/student/detail/@student.StudentId">@student.StudentName</a>
+                        </td>
+                        <td>@student.BirthDate</td>
+                        <td>@student.Class.ClassName</td>
+                        <td>
+                            <a class="btn btn-outline-info" href="/student/detail/@student.StudentId">Detail</a>
+                            <a class="btn btn-outline-success" href="/student/edit/@student.StudentId">Edit</a>
+                            <a class="btn btn-outline-danger" href="/">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
     </table>
 </div>

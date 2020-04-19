@@ -1,0 +1,36 @@
+@model MVC.Models.Student;
+@{
+    ViewData["Title"] = "Student's Edit Page";
+    var classes = ViewBag.Classes; 
+    var student = Model;
+}
+<div class="container">
+    <h2 class="text-center">Edit Student form</h2>
+    <form class="form-group" action="/student/EditStudent" method="post">
+        <div class="form-group">
+            <label for="StudentId">Id:</label>
+            <input type="text" class="form-control" readonly=true name="StudentId" id="StudentId" value="@student.StudentId">
+        </div>
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input type="text" class="form-control" name="StudentName" id="StudentName" value="@student.StudentName">
+        </div>
+        <div class="form-group">
+            <label for="BirthDate">BirthDate:</label>
+            <input type="text" class="form-control" name="BirthDate" id="BirthDate" value="@student.BirthDate.ToShortDateString()">
+        </div>
+        <div class="form-group">
+            <label for="Class">Class:</label>
+            <select class="form-control" name="ClassId" id="ClassId">
+                @if (classes != null){
+                    @foreach (var classItem in classes)
+                    {
+                        <option value="@classItem.ClassId" selected=@(student.ClassId == classItem.ClassId ? true : false) >@classItem.ClassName</option>
+                    }
+                }
+            </select>        
+        </div>
+        <button class="btn btn-outline-success" type = "submit">Save</button>
+        <a href="/student" class="btn btn-outline-danger">Cancel</a>
+    </form>
+</div>

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVC.Models;
+using MVC.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace MVC
@@ -29,8 +30,9 @@ namespace MVC
             // using Microsoft.EntityFrameworkCore;
             services.AddDbContext<DataContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("mvc_dotnet")));
-            //services.AddScoped<IStudentService, StudentService>();
             
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IClassService, ClassService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

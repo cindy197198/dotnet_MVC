@@ -3,6 +3,10 @@
     ViewData["Title"] = "Student's Detail Page";
     var student = Model;
 }
-<h3>@student.StudentId</h3>
-<h3>@student.StudentName</h3>
-<h3>@student.BirthDate</h3>
+
+@if (student!=null){
+    <h3>@student.StudentId</h3>
+    <h3>@student.StudentName</h3>
+    <h3>@student.BirthDate</h3>
+    <h3>@student.Class.ClassName</h3>
+}
